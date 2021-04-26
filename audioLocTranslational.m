@@ -39,8 +39,6 @@ try
     %% Init the experiment
     [cfg] = initPTB(cfg);
 
-    [el] = eyeTracker('Calibration', cfg);
-
     [cfg] = expDesign(cfg);
 
     % Prepare for the output logfiles with all
@@ -72,7 +70,6 @@ try
 
         fprintf('\n - Running Block %.0f \n', iBlock);
 
-        eyeTracker('StartRecording', cfg);
 
         % For each event in the block
         for iEvent = 1:cfg.design.nbEventsPerBlock
@@ -88,16 +85,7 @@ try
 
             thisEvent.isStim = logFile.isStim;
 
-            % we wait for a trigger every 2 events
-            if cfg.pacedByTriggers.do && mod(iEvent, 2) == 1
-                waitForTrigger( ...
-                               cfg, ...
-                               cfg.keyboard.responseBox, ...
-                               cfg.pacedByTriggers.quietMode, ...
-                               cfg.pacedByTriggers.nbTriggers);
-            end
 
-            % % % REFACTOR THIS FUNCTION % % %
             % play the sounds and collect onset and duration of the event
             [onset, duration] = doAuditoryMotion(cfg, thisEvent);
 
