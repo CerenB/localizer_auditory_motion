@@ -1,7 +1,5 @@
 function [cfg] = loadAudioFiles(cfg)
 
-    %% Get parameters
-
     % Set the subj name to retrieve its own sounds
     if cfg.debug.do
         subjName = 'sub-ctrl666';
@@ -12,42 +10,35 @@ function [cfg] = loadAudioFiles(cfg)
     end
 
     %% Load the sounds
+    freq = [];
 
-    % static Stimuli
-    fileName = fullfile('input', 'Static', 'Static.wav');
-    [soundData.S, freq1] = audioread(fileName);
-    soundData.S = soundData.S';
+    directions = 'UDRL';
 
-    % motion input
-    fileName = fullfile('input', 'Motion', subjName, [subjName, '_LRL_rms.wav']);
-    [soundData.LRL, freq2] = audioread(fileName);
-    soundData.LRL = soundData.LRL';
+    for isTarget = 0:1
 
-    fileName = fullfile('input', 'Motion', subjName, [subjName, '_RLR_rms.wav']);
-    [soundData.RLR, freq3] = audioread(fileName);
-    soundData.RLR = soundData.RLR';
+        for i = 1:numel(directions)
 
-    %% Targets
+            suffix = directions(i);
+            if isTarget
+                suffix = [suffix '_T'];
+            end
 
-    % static Stimuli
-    fileName = fullfile('input', 'Static', 'Static_T.wav');
-    [soundData.S_T, freq4] = audioread(fileName);
-    soundData.S_T = soundData.S_T';
+            fileName = fullfile('input', subjName, ...
+                                ['rms_', subjName, '_' suffix '.wav']);
 
-    % motion Stimuli
-    fileName = fullfile('input', 'Motion', subjName, [subjName, '_LRL_T_rms.wav']);
-    [soundData.LRL_T, freq5] = audioread(fileName);
-    soundData.LRL_T = soundData.LRL_T';
+            [tmp, freq(end + 1)] = audioread(fileName); %#ok<*AGROW>
+            soundData.(suffix) = tmp';
 
-    fileName = fullfile('input', 'Motion', subjName, [subjName, '_RLR_T_rms.wav']);
-    [soundData.RLR_T, freq6] = audioread(fileName);
-    soundData.RLR_T = soundData.RLR_T';
+        end
+    end
 
-    if length(unique([freq1 freq2 freq3 freq4 freq5 freq6])) > 1
-        error ('Sounds do not have the same frequency');
+    if length(unique(freq)) > 1
+        error ('Sounds dont have the same frequency');
     else
-        freq = unique([freq1 freq2 freq3 freq4 freq5 freq6]);
+        freq = unique(freq);
     end
 
     cfg.soundData = soundData;
     cfg.audio.fs = freq;
+    
+end
