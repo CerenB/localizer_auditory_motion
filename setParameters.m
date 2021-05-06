@@ -48,7 +48,7 @@ function cfg = setParameters
     cfg.design.names = {'static'; 'motion'};
     % 0: L--R--L; 180: R--L--R;
     cfg.design.motionDirections = [0 180]; %[0 90 180 270]
-    cfg.design.nbRepetitions = 6;
+    cfg.design.nbRepetitions = 1;
     cfg.design.nbEventsPerBlock = 12;
 
     %% Timing
