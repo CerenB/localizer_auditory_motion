@@ -41,13 +41,11 @@ function cfg = setParameters
 
     %% Experiment Design
 
-    %     cfg.design.motionType = 'translation';
-    %     cfg.design.motionType = 'radial';
     cfg.design.motionType = 'translation';
     cfg.design.names = {'static'; 'motion'};
     % 0: L--R; 180: R--L;
     cfg.design.motionDirections = [0 90 180 270]; %[0 180] [0 90 180 270]
-    cfg.design.nbRepetitions = 1;
+    cfg.design.nbRepetitions = 13;
     cfg.design.nbEventsPerBlock = 12;
 
     %% Timing
@@ -59,7 +57,7 @@ function cfg = setParameters
     % block length = (cfg.eventDuration + cfg.ISI) * cfg.design.nbEventsPerBlock
 
     % for info: not actually used since "defined" by the sound duration
-    %     cfg.timing.eventDuration = 0.850; % second
+    %     cfg.timing.eventDuration = 1.20; % second
 
     % Time between blocs in secs
     cfg.timing.IBI = 6;
