@@ -17,39 +17,13 @@ function [onset, duration] = doAuditoryMotion(cfg, thisEvent)
 
     %% Get parameters
 
-    direction = thisEvent.direction(1);
-    isFixationTarget = thisEvent.fixationTarget(1);
-    targetDuration = cfg.target.duration;
-    isSoundTarget = thisEvent.soundTarget(1);
-
-    soundData = cfg.soundData;
-
-    switch direction
-        case -1
-            fieldName = 'S';
-        case 0
-            fieldName = 'L';
-        case 90
-            fieldName = 'U';
-        case 180
-            fieldName = 'R';
-        case 270
-            fieldName = 'D';
-    end
-
-    if isSoundTarget == 1
-        fieldName = [fieldName '_T'];
-    end
-
-    sound = soundData.(fieldName);
-
-    % Start the sound presentation
-    PsychPortAudio('FillBuffer', cfg.audio.pahandle, sound);
-    PsychPortAudio('Start', cfg.audio.pahandle);
-    onset = GetSecs;
+    onset = startPlayingAuditoryMotion(cfg, thisEvent);
 
     % draw first fixation and get a first visual time stamp
     % ideally we would want to synch that first time stamp and the sound start
+    isFixationTarget = thisEvent.fixationTarget(1);
+    targetDuration = cfg.target.duration;
+    
     thisFixation.fixation = cfg.fixation;
     thisFixation.screen = cfg.screen;
     if isFixationTarget == 1
