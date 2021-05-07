@@ -75,8 +75,8 @@ function cfg = setParameters
 
         cfg.pacedByTriggers.quietMode = true;
         cfg.pacedByTriggers.nbTriggers = 1;
-
-        cfg.timing.eventDuration = cfg.mri.repetitionTime / 2 - 0.04; % second
+        
+        cfg.timing.eventDuration = 1.2; % second
 
         % Time between blocs in secs
         cfg.timing.IBI = 0;
@@ -110,7 +110,7 @@ function cfg = setParameters
     cfg.fixation.yDisplacement = 0;
 
     cfg.target.maxNbPerBlock = 1;
-    cfg.target.duration = 0.5; % In secs
+    cfg.target.duration = 0.6; % In secs
 
     cfg.extraColumns = {'direction', 'soundTarget', 'fixationTarget', 'event', 'block', 'keyName'};
 
