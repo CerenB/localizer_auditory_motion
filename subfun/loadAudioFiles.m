@@ -12,11 +12,11 @@ function [cfg] = loadAudioFiles(cfg)
     freq = [];
     
     %load static sounds
-    fileName = fullfile('input', 'Static', 'Static.wav');
+    fileName = fullfile('input', 'Static', subjName, 'Static.wav');
     [soundData.S, freq(1)] = audioread(fileName);
     soundData.S = soundData.S';
     
-    fileName = fullfile('input', 'Static', 'Static_T.wav');
+    fileName = fullfile('input', 'Static', subjName, 'Static_T.wav');
     [soundData.S_T, freq(2)] = audioread(fileName);
     soundData.S_T = soundData.S_T';
 
