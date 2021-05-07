@@ -28,9 +28,13 @@ function [onset, duration] = doAuditoryMotion(cfg, thisEvent)
         case -1
             fieldName = 'S';
         case 0
-            fieldName = 'LRL';
+            fieldName = 'L';
+        case 90
+            fieldName = 'U';
         case 180
-            fieldName = 'RLR';
+            fieldName = 'R';
+        case 270
+            fieldName = 'D';
     end
 
     if isSoundTarget == 1
