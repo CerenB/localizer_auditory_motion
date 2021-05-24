@@ -45,7 +45,7 @@ function cfg = setParameters
     cfg.design.names = {'static'; 'motion'};
     % 0: L--R; 180: R--L;
     cfg.design.motionDirections = [0 180]; %[0 90 180 270]
-    cfg.design.nbRepetitions = 14;
+    cfg.design.nbRepetitions = 13;
     cfg.design.nbEventsPerBlock = 12;
 
     %% Timing
@@ -107,7 +107,7 @@ function cfg = setParameters
     cfg.fixation.xDisplacement = 0;
     cfg.fixation.yDisplacement = 0;
 
-    cfg.target.maxNbPerBlock = 2;
+    cfg.target.maxNbPerBlock = 1;
     cfg.target.duration = 0.6; % In secs
 
     cfg.extraColumns = {'direction', 'soundTarget', 'fixationTarget', 'event', 'block', 'keyName'};
