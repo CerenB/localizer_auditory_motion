@@ -84,7 +84,7 @@ function [cfg] = expDesign(cfg, displayFigs)
             % Set target
             % - if there are 2 targets per block we make sure that they are at least
             % 2 events apart
-            % - targets cannot be on the first or last event of a block
+            % - targets cannot be on the first event of a block
 
             nbTarget = numTargetsForEachBlock(iBlock);
 
