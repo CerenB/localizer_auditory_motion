@@ -14,13 +14,13 @@ function cfg = setParameters
     %% Debug mode settings
 
     cfg.debug.do = false; % To test the script out of the scanner, skip PTB sync
-    cfg.debug.smallWin = true; % To test on a part of the screen, change to 1
-    cfg.debug.transpWin = false; % To test with trasparent full size screen
+    cfg.debug.smallWin = false; % To test on a part of the screen, change to 1
+    cfg.debug.transpWin = true; % To test with trasparent full size screen
 
     cfg.verbose = 1;
     cfg.skipSyncTests = 0;
 
-  %  cfg.audio.devIdx = 3; % 5 %11
+    cfg.audio.devIdx = 3; % 5 %11
 
     % it won't ask you about group or session
     cfg.subject.askGrpSess = [0 0]; 
@@ -44,7 +44,7 @@ function cfg = setParameters
     cfg.design.motionType = 'translation';
     cfg.design.names = {'static'; 'motion'};
     % 0: L--R; 180: R--L;
-    cfg.design.motionDirections = [0 90 180 270]; %[0 180] [0 90 180 270]
+    cfg.design.motionDirections = [0 180]; %[0 90 180 270]
     cfg.design.nbRepetitions = 13;
     cfg.design.nbEventsPerBlock = 12;
 
