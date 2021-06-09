@@ -20,7 +20,11 @@ function cfg = setParameters
     cfg.verbose = 1;
     cfg.skipSyncTests = 0;
 
-    cfg.audio.devIdx = 3; % 5 %11
+    % add audio index if its windows
+    if IsWin
+        cfg.audio.devIdx = 3; % 5 %11
+    end
+
 
     % it won't ask you about group or session
     cfg.subject.askGrpSess = [0 0]; 
@@ -96,7 +100,7 @@ function cfg = setParameters
 
     % Instruction
     cfg.task.instruction = ['1 - Detect the RED fixation cross\n' ...
-                            '2 - Detected the shorter repeated sounds'];
+                            '2 - Detect the shorter repeated sounds'];
 
     % Fixation cross (in pixels)
     cfg.fixation.type = 'cross';
@@ -115,7 +119,10 @@ function cfg = setParameters
 end
 
 function cfg = setMonitor(cfg)
-
+    
+    % text size
+    cfg.text.size = 48;
+    
     % Monitor parameters for PTB
     cfg.color.white = [255 255 255];
     cfg.color.black = [0 0 0];
@@ -136,7 +143,7 @@ end
 
 function cfg = setKeyboards(cfg)
     cfg.keyboard.escapeKey = 'ESCAPE';
-    cfg.keyboard.responseKey = {'d', 'a', 'c', 'b'}; % dnze rgyb
+    cfg.keyboard.responseKey = {'a', 'c', 'b', 'd'}; % dnze rgyb
     
     cfg.keyboard.keyboard = [];
     cfg.keyboard.responseBox = [];
@@ -155,7 +162,7 @@ function cfg = setMRI(cfg)
     cfg.mri.repetitionTime = 1.75;
 
     cfg.bids.MRI.Instructions = ['1 - Detect the RED fixation cross\n' ...
-                                 '2 - Detected the shorter repeated sounds'];
+                                 '2 - Detect the shorter repeated sounds'];
     cfg.bids.MRI.TaskDescription = [];
     cfg.bids.mri.SliceTiming = [0, 0.9051, 0.0603, 0.9655, 0.1206, 1.0258, 0.181, ...
                               1.0862, 0.2413, 1.1465, 0.3017, 1.2069, 0.362, ...
